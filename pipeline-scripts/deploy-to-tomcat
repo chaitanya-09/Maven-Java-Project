@@ -1,10 +1,10 @@
 def mvnHome
 def remote = [:]
 remote.name = "Staging"
-remote.host = "172.31.7.87"
+remote.host = "172.31.46.170"
 remote.allowAnyHosts = true
-remote.user = "centos"
-remote.password = "Rnstech@123"
+remote.user = "root"
+remote.password = "root"
 pipeline {
    agent none
 
@@ -15,8 +15,8 @@ pipeline {
           }
          steps {
             // Get src code from a GitHub repository
-            git credentialsId: 'github_un-pwd', url: 'https://github.com/venkat09docs/Maven-Java-Project.git'
-            
+            git credentialsId: 'github_un-pwd', url: 'ttps://github.com/chaitanya-09/Maven-Java-Project.git'
+            '
             script{
                 mvnHome = tool name: 'maven3.6', type: 'maven'
             }      
