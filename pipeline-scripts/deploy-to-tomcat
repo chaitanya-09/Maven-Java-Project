@@ -50,7 +50,7 @@ pipeline {
       steps{
          sh "mv target/*.war target/webapp.war"
          sshCommand remote: remote, command: 'sh /root/workspace/tomcat/bin/shutdown.sh'
-         sshPut remote: remote, from: 'target/webapp.war', into: '/home/centos/tomcat8/webapps/'
+         sshPut remote: remote, from: 'target/webapp.war', into: '/root/workspace/tomcat/webapps/'
          sshCommand remote: remote, command: 'sh /root/workspace/tomcat/bin/startup.sh'
       }
    }
