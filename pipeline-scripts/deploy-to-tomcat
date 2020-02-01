@@ -28,7 +28,7 @@ pipeline {
           }
         steps{
             // Run Maven on a Unix agent.
-            sh "'${mvnHome}/bin/mvn' clean package" 
+            sh "'${mvnHome}/bin/mvn'  package" 
         }
          post {
             // record the test results and archive the war file.
