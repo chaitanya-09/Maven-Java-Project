@@ -48,9 +48,9 @@ pipeline {
           }
           
       steps{
-         sh "mv **/*.war /root/workspace/tomcat/webapps/webapp.war"
+         sh "cp **/*.war target/webapp.war"
          sshCommand remote: remote, command: 'sh /root/workspace/tomcat/bin/shutdown.sh'
-         sshPut remote: remote, from: '/root/workspace/tomcat/webapps/webapp.war', into: '/root/workspace/tomcat/webapps/'
+         sshPut remote: remote, from: 'target/webapp.war', into: '/root/workspace/tomcat/webapps/'
          sshCommand remote: remote, command: 'sh /root/workspace/tomcat/bin/startup.sh'
       }
    }
