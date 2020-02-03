@@ -28,7 +28,7 @@ pipeline {
           }
         steps{
             // Run Maven on a Unix agent.
-            sh "'${mvnHome}/bin/mvn'  package" 
+            sh "'${mvnHome}/bin/mvn' clean package" 
         }
          post {
             // record the test results and archive the war file.
@@ -48,12 +48,11 @@ pipeline {
           }
           
       steps{
-         sh "cp **/*.war target/webapp.war"
+         sh "mv target/*.war target/webapp.war"
          sshCommand remote: remote, command: 'sh /root/workspace/tomcat/bin/shutdown.sh'
          sshPut remote: remote, from: 'target/webapp.war', into: '/root/workspace/tomcat/webapps/'
          sshCommand remote: remote, command: 'sh /root/workspace/tomcat/bin/startup.sh'
       }
    }
    }
-
 }
