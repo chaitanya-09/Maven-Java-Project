@@ -1,9 +1,9 @@
 def mvnHome
 def remote = [:]
          remote.name = 'ansible'
-         remote.host = '172.31.30.225'
-         remote.user = 'centos'
-         remote.password = 'Rnstech@123'
+         remote.host = '172.31.43.8'
+         remote.user = 'root'
+         remote.password = 'root'
          remote.allowAnyHosts = true
 
 pipeline {
@@ -16,7 +16,7 @@ pipeline {
           }
          steps {
             // Get src code from a GitHub repository
-            git credentialsId: 'github_un-pwd', url: 'https://github.com/venkat09docs/Maven-Java-Project.git'
+            git credentialsId: 'github_un-pwd', url: 'https://github.com/chaitanya09/Maven-Java-Project.git'
             
             script{
                 mvnHome = tool name: 'maven3.6', type: 'maven'
@@ -31,7 +31,7 @@ pipeline {
           steps{
           
             sshCommand remote: remote, command: 'cd Maven-Java-Project; git pull'
-            //sshCommand remote: remote, command: 'cd Maven-Java-Project; ansible-playbook -i hosts tools/sonarqube/sonar-install.yaml'
+            sshCommand remote: remote, command: 'cd Maven-Java-Project; ansible-playbook -i hosts tools/sonarqube/sonar-install.yaml'
             //sshCommand remote: remote, command: 'cd Maven-Java-Project; ansible-playbook -i hosts tools/docker/docker-install.yml'
           }
       }      
