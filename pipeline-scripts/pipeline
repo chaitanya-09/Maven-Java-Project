@@ -57,7 +57,7 @@ pipeline {
               label 'BuildServer'
           }
           steps{
-              sh "${mvnHome}/bin/mvn clean test"  
+              sh "${mvnHome}/bin/mvn  test"  
           }
           post{
               success{
